@@ -1,19 +1,27 @@
 const fs = require('fs');
 const path = require('path');
 
-function indexCreator(dir, caseType = 'pascal', excludePattern = 'index.js') {
+const defaultConfig = {
+  caseType: 'pascal',
+  excludePattern: 'index.js'
+}
+
+function indexCreator(dir, config) {
   if (!dir) {
     throw new Error('dir parameter it\'s mandatory.');
   }
+
+  const { caseType, excludePattern } = { ...defaultConfig, ...config };
+  const caseTypes = {
+    pascal: new RegExp('(?:^|[-.])(.)', 'ig'),
+    camel: new RegExp('[-.](.)', 'ig')
+  }
+
   if (!caseTypes[caseType]) {
     throw new Error('Bad caseType value only pascal or camel accepted.');
   }
 
   const indexObject = {};
-  const caseTypes = {
-    pascal: new RegExp('^(.)|[-.](.)', 'ig'),
-    camel: new RegExp('[-.](.)', 'ig')
-  }
 
   for (const file of fs.readdirSync(dir)) {
     if (file.match(excludePattern)) { continue; }

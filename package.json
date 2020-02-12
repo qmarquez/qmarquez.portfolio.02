@@ -1,0 +1,24 @@
+{
+  "name": "index_creator",
+  "version": "1.0.1",
+  "description": "Simple index creator (drop intellisense).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qmarquez/qmarquez.portfolio.02.git"
+  },
+  "keywords": [
+    "index",
+    "creator",
+    "automatic"
+  ],
+  "author": "qmarquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qmarquez/qmarquez.portfolio.02/issues"
+  },
+  "homepage": "https://github.com/qmarquez/qmarquez.portfolio.02#readme"
+}

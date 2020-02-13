@@ -3,7 +3,8 @@ const path = require('path');
 
 const defaultConfig = {
   caseType: 'pascal',
-  excludePattern: 'index.js'
+  excludePattern: 'index.js',
+  removeExtension: true
 }
 
 function indexCreator(dir, config) {
@@ -11,7 +12,9 @@ function indexCreator(dir, config) {
     throw new Error('dir parameter it\'s mandatory.');
   }
 
-  const { caseType, excludePattern } = { ...defaultConfig, ...config };
+  const { caseType,
+    excludePattern,
+    removeExtension } = { ...defaultConfig, ...config };
   const caseTypes = {
     pascal: new RegExp('(?:^|[-.])(.)', 'ig'),
     camel: new RegExp('[-.](.)', 'ig')
@@ -27,7 +30,9 @@ function indexCreator(dir, config) {
     if (file.match(excludePattern)) { continue; }
 
     const rawName = file.split('.');
-    rawName.pop();
+    if (rawName.length > 0 && removeExtension) {
+      rawName.pop();
+    }
 
     const exportName = rawName
       .join('.')

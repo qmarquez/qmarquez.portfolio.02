@@ -30,7 +30,7 @@ function indexCreator(dir, config) {
     if (file.match(excludePattern)) { continue; }
 
     const rawName = file.split('.');
-    if (rawName.length > 0 && removeExtension) {
+    if (rawName.length > 1 && removeExtension) {
       rawName.pop();
     }
 
